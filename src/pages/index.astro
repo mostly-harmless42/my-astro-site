@@ -2,15 +2,206 @@
 
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<section class="hero">
+  <div class="hero-bg"></div>
+
+  <div class="hero-inner">
+    <p class="eyebrow">be adorned and adored</p>
+    <h1 class="title">Armoured Regalia</h1>
+    <p class="subtitle">house of chainmaille</p>
+  </div>
+</section>
+
+<section class="next-section">
+  <div class="next-bg"></div>
+
+  <div class="next-inner">
+    <h2>Cool Stuff Here</h2>
+    <p>some options down here</p>
+  </div>
+</section>
+
+<script>
+  import gsap from "gsap";
+  import ScrollTrigger from "gsap/ScrollTrigger";
+  gsap.registerPlugin(ScrollTrigger);
+
+  // -------------------
+  // Intro text animation
+  // -------------------
+  const intro = gsap.timeline({ defaults: { ease: "sine.out" } });
+
+  intro
+    .from(".eyebrow", { opacity: 0, y: 80, duration: 1.5 })
+    .from(".title", { opacity: 0, y: 40, duration: 1.2 }, "-=0.9")
+    .from(".subtitle", { opacity: 0, y: 20, duration: 1 }, "-=0.8");
+
+  // -------------------
+  // Hero background parallax
+  // -------------------
+  gsap.to(".hero-bg", {
+    yPercent: 30,
+    ease: "none",
+    scrollTrigger: {
+      trigger: ".hero",
+      start: "top top",
+      end: "+=100%",
+      scrub: true
+    }
+  });
+
+  // -------------------
+  // Hero blur + fade + snap
+  // -------------------
+  gsap.timeline({
+    scrollTrigger: {
+      trigger: ".hero",
+      start: "top top",
+      end: "+=100%",
+      scrub: true,
+      snap: {
+        snapTo: [0, 1],
+        duration: .8,
+        ease: "none"
+      }
+    }
+  })
+    .to(".hero-inner", {
+      opacity: 0,
+      filter: "blur(12px)",
+      ease: "none"
+    })
+    .to(".hero-bg", {
+      filter: "blur(40px)",
+      ease: "none"
+    }, 0)
+    .fromTo(
+      ".next-inner",
+      { opacity: 0 },
+      { opacity: 1, ease: "none" },
+      0
+    );
+
+  // -------------------
+  // NEXT SECTION: background parallax + fade-in
+  // -------------------
+  gsap.fromTo(
+    ".next-bg",
+    {
+      yPercent: -20,
+      opacity: 0
+    },
+    {
+      yPercent: 10,
+      opacity: 1,
+      ease: "none",
+      scrollTrigger: {
+        trigger: ".next-section",
+        start: "top bottom",
+        end: "+=100%",
+        scrub: true
+      }
+    }
+  );
+</script>
+
+<style>
+/* -------------------
+   GLOBAL
+------------------- */
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* -------------------
+   HERO
+------------------- */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: -20%;
+  background-image: url("../images/hero.jpg");
+  background-size: cover;
+  background-position: center;
+  will-change: transform, filter;
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 700px;
+  padding: 2rem;
+  text-align: center;
+  color: white;
+  will-change: opacity, filter;
+  margin-top: -5rem;
+}
+
+.eyebrow {
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  opacity: 0.8;
+  /* margin-bottom: -0.5rem; */
+}
+
+.title {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 600;
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  margin: 2rem 0 3rem;
+  opacity: 0.9;
+}
+
+.subtitle {
+  text-transform: uppercase;
+  font-size: 1.1rem;
+  opacity: 0.85;
+}
+
+/* -------------------
+   NEXT SECTION
+------------------- */
+.next-section {
+  position: relative;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  color: white;
+}
+
+.next-bg {
+  position: absolute;
+  inset: -25%;
+  background-image: url("../images/section.jpg");
+  background-size: cover;
+  background-position: center;
+  will-change: transform, opacity;
+}
+
+.next-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 600px;
+  padding: 2rem;
+  text-align: center;
+  margin-top: -15rem;
+  opacity: 0;
+}
+
+.next-inner h2 {
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin-bottom: 1rem;
+}
+</style>
