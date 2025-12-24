@@ -7,7 +7,7 @@
 
   <div class="hero-inner">
     <p class="eyebrow">be adorned and adored</p>
-    <h1 class="title">Armoured Regalia</h1>
+    <h1 class="title"><span class="font1">A</span><span class="font2"> RMOURED  </span><span class="font1">R</span><span class="font2">EGALIA</span> </h1>
     <p class="subtitle">house of chainmaille</p>
   </div>
 </section>
@@ -115,11 +115,38 @@ body {
   padding: 0;
 }
 
+/* -------------------
+   FONTS
+------------------- */
+
 @font-face {
-    font-family: "brotheric"; /* Name the font whatever you want */
-    src: url("../fonts/brotheric.regular.otf") format("opentype"); /* Specify the correct path and format */
-    font-weight: normal; /* Define the weight and style of this specific file */
+    font-family: 'Luxurious Script';
+    src: url('../fonts/LuxuriousScript-Regular.woff2') format('woff2'),
+        url('../fonts/LuxuriousScript-Regular.woff') format('woff');
+    font-weight: 1000;
     font-style: normal;
+    font-display: swap;
+}
+
+
+
+@font-face {
+    font-family: 'Libre Caslon Display';
+    src: url('../fonts/LibreCaslonDisplay-Regular.woff2') format('woff2'),
+        url('../fonts/LibreCaslonDisplay-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+@font-face {
+    font-family: 'Open Sans';
+    src: url('../fonts/OpenSans.woff2') format('woff2'),
+        url('../fonts/OpenSans.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
 }
 
 
@@ -157,22 +184,35 @@ body {
 .eyebrow {
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   opacity: 0.8;
   /* margin-bottom: -0.5rem; */
 }
 
 .title {
-  font-family: "brotheric";
   font-weight: 600;
   font-size: clamp(2.5rem, 6vw, 4rem);
   margin: 2rem 0 3rem;
   opacity: 0.9;
+  /* position: relative; */
+}
+
+.font1 {
+  font-family: 'Luxurious Script';
+  font-size: 7rem;
+}
+
+.font2 {
+  font-family: 'Libre Caslon Display';
+  font-size: 2.5rem;
+  position: relative;
+  top: -.5rem;
 }
 
 .subtitle {
+  font-family: 'Open Sans';
   text-transform: uppercase;
-  font-size: 1.1rem;
+  font-size: 1rem;
   opacity: 0.85;
 }
 
@@ -208,7 +248,7 @@ body {
 }
 
 .next-inner h2 {
-  font-family: "Cormorant Garamond", serif;
+  font-family: "brotheric";
   font-size: clamp(2rem, 4vw, 3rem);
   margin-bottom: 1rem;
 }
