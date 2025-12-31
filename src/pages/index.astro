@@ -16,8 +16,14 @@
   <div class="next-bg"></div>
 
   <div class="next-inner">
-    <h2>Cool Stuff Here</h2>
-    <p>some options down here</p>
+    <a
+      href="https://shop.armouredregalia.com"
+      class="shop-button"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      SHOP ARMOURED REGALIA
+    </a>
   </div>
 </section>
 
@@ -25,6 +31,8 @@
   import gsap from "gsap";
   import ScrollTrigger from "gsap/ScrollTrigger";
   gsap.registerPlugin(ScrollTrigger);
+
+  
 
   // -------------------
   // Intro text animation
@@ -61,8 +69,8 @@
       scrub: true,
       snap: {
         snapTo: [0, 1],
-        duration: .8,
-        ease: "none"
+        duration: 1,
+        ease: "power0.easeNone"
       }
     }
   })
@@ -232,11 +240,12 @@ body {
 
 .next-bg {
   position: absolute;
-  inset: -25%;
+  inset: -10%;
   background-image: url("../images/section.jpg");
   background-size: cover;
   background-position: center;
   will-change: transform, opacity;
+  margin-top: -10rem;
 }
 
 .next-inner {
@@ -253,5 +262,34 @@ body {
   font-family: "brotheric";
   font-size: clamp(2rem, 4vw, 3rem);
   margin-bottom: 1rem;
+}
+
+.shop-button {
+  display: inline-block;
+  padding: 0.9rem 1.8rem;
+  margin-top: 4rem;
+
+  font-family: inherit;
+  font-size: 0.9rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+
+  color: white;
+  text-decoration: none;
+
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  background: transparent;
+  backdrop-filter: blur(2px);
+
+  transition: 
+    background 0.3s ease,
+    color 0.3s ease,
+    transform 0.2s ease;
+}
+
+.shop-button:hover {
+  background: white;
+  color: black;
+  transform: translateY(-3px);
 }
 </style>
